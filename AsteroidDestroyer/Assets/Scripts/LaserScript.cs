@@ -10,10 +10,29 @@ public class LaserScript : MonoBehaviour
     private void Start()
     {
         rigidbody2D = GetComponent<Rigidbody2D>();
+        Invoke("DestroyLaser", 3.0f);
     }
 
     private void FixedUpdate()
     {
+        FireLaser();
+    }
+
+    private void FireLaser()
+    {
         rigidbody2D.AddForce(transform.up * laserSpeed);
+    }
+
+    private void DestroyLaser()
+    {
+        Destroy(gameObject);
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.layer == 10)
+        {
+            Destroy(gameObject);
+        }
     }
 }

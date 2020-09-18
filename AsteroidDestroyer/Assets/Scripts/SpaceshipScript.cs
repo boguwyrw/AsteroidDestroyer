@@ -4,45 +4,35 @@ using UnityEngine;
 
 public class SpaceshipScript : MonoBehaviour
 {
-    private Vector2 screenBounds;
-    private float spaceshipSpeed = 8;
-
-    private void Start()
-    {
-        screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, 0.0f));
-    }
+    private float spaceshipSpeed = 8.0f;
+    private float spaceshipRotationSpeed = 50.0f;
 
     private void Update()
     {
         PlayerMovement();
-        PlayerBounds();
     }
 
     private void PlayerMovement()
     {
         if (Input.GetKey(KeyCode.D))
         {
-            transform.Translate(transform.right * spaceshipSpeed * Time.deltaTime);
+            transform.Rotate(Vector3.forward * -spaceshipRotationSpeed * Time.deltaTime);
         }
         if (Input.GetKey(KeyCode.A))
         {
-            transform.Translate(-transform.right * spaceshipSpeed * Time.deltaTime);
+            transform.Rotate(Vector3.forward * spaceshipRotationSpeed * Time.deltaTime);
         }
         if (Input.GetKey(KeyCode.W))
         {
             transform.Translate(transform.up * spaceshipSpeed * Time.deltaTime);
         }
-        if (Input.GetKey(KeyCode.S))
-        {
-            transform.Translate(-transform.up * spaceshipSpeed * Time.deltaTime);
-        }
     }
-
-    private void PlayerBounds()
+    // można wrzucić do nowego pliku - spaceship nie posiada Rigidbody2D, wiec nie zadziala
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        Vector2 playerPosition = transform.position;
-        playerPosition.x = Mathf.Clamp(transform.position.x, -screenBounds.x + 1.5f, screenBounds.x - 1.5f);
-        playerPosition.y = Mathf.Clamp(transform.position.y, -screenBounds.y, screenBounds.y);
-        transform.position = playerPosition;
+        if (collision.gameObject.layer == 10)
+        {
+            Destroy(gameObject);
+        }
     }
 }
