@@ -10,7 +10,7 @@ public class DestructionOfAsteroidScript : MonoBehaviour
         bool asteroidCollision = collision.gameObject.layer == 10;
         if (laserCollision || asteroidCollision)
         {
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
     }
 }
