@@ -4,8 +4,15 @@ using UnityEngine;
 
 public class SpaceshipScript : MonoBehaviour
 {
+    private Rigidbody2D rigidbody2D;
     private float spaceshipSpeed = 8.0f;
-    private float spaceshipRotationSpeed = 50.0f;
+    private float spaceshipRotationSpeed = 75.0f;
+
+    private void Start()
+    {
+        rigidbody2D = GetComponent<Rigidbody2D>();
+        rigidbody2D.gravityScale = 0.0f;
+    }
 
     private void Update()
     {
@@ -24,15 +31,7 @@ public class SpaceshipScript : MonoBehaviour
         }
         if (Input.GetKey(KeyCode.W))
         {
-            transform.Translate(transform.up * spaceshipSpeed * Time.deltaTime);
-        }
-    }
-    // można wrzucić do nowego pliku - spaceship nie posiada Rigidbody2D, wiec nie zadziala
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.layer == 10)
-        {
-            Destroy(gameObject);
+            transform.Translate(Vector3.up * spaceshipSpeed * Time.deltaTime);
         }
     }
 }

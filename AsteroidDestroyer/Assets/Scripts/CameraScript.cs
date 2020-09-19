@@ -11,8 +11,10 @@ public class CameraScript : MonoBehaviour
 
     private void Update()
     {
-        cameraPosition = new Vector3(spaceship.transform.position.x, spaceship.transform.position.y, transform.position.z);
-
-        transform.position = cameraPosition;
+        if (spaceship)
+        {
+            cameraPosition = new Vector3(spaceship.transform.position.x, spaceship.transform.position.y, transform.position.z);
+            transform.position = cameraPosition;
+        }
     }
 }

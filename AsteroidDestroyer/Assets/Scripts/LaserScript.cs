@@ -5,10 +5,12 @@ using UnityEngine;
 public class LaserScript : MonoBehaviour
 {
     private Rigidbody2D rigidbody2D;
-    private float laserSpeed = 40;
+    private float laserSpeed = 6000;
 
     private void Start()
     {
+        rigidbody2D = GetComponent<Rigidbody2D>();
+        rigidbody2D.gravityScale = 0.0f;
         rigidbody2D = GetComponent<Rigidbody2D>();
         Invoke("DestroyLaser", 3.0f);
     }
@@ -20,19 +22,11 @@ public class LaserScript : MonoBehaviour
 
     private void FireLaser()
     {
-        rigidbody2D.AddForce(transform.up * laserSpeed);
+        rigidbody2D.AddForce(transform.up * laserSpeed * Time.deltaTime);
     }
 
     private void DestroyLaser()
     {
         Destroy(gameObject);
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.layer == 10)
-        {
-            Destroy(gameObject);
-        }
     }
 }
