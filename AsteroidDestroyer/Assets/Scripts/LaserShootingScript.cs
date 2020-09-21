@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpaceshipShootingScript : MonoBehaviour
+public class LaserShootingScript : MonoBehaviour, IShootingScript
 {
     [SerializeField]
     private GameObject laser;
@@ -11,10 +11,10 @@ public class SpaceshipShootingScript : MonoBehaviour
 
     private void Start()
     {
-        InvokeRepeating("Shooting", 0.0f, 0.5f);
+        InvokeRepeating("IShootingScript.Shooting", 0.0f, 0.5f);
     }
 
-    private void Shooting()
+    void IShootingScript.Shooting()
     {
         Instantiate(laser, firePoint.position, firePoint.rotation);
     }
