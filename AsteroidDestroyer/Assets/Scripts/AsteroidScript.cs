@@ -13,7 +13,7 @@ public class AsteroidScript : MonoBehaviour
     {
         rigidbody2D = GetComponent<Rigidbody2D>();
         rigidbody2D.gravityScale = 0.0f;
-        asteroidSpeed = Random.Range(0.5f, 7.5f);
+        asteroidSpeed = Random.Range(0.5f, 1.5f);
         asteroidAngle = Random.Range(0.0f, 360f);
         transform.Rotate(new Vector3(0.0f, 0.0f, asteroidAngle));
     }

@@ -13,10 +13,20 @@ public class AsteroidsControllerScript : MonoBehaviour
 
     private List<GameObject> asteroidsQueue = new List<GameObject>();
 
+    private int distance = 10;
+    private int numberOfRowsAndColumns = 16;
+    private int startPoint;
+
+    private void Awake()
+    {
+        startPoint = distance * numberOfRowsAndColumns - distance;
+        //CreatingAsteroids();
+        CreatingRowOfAsteroids();
+    }
+
     private void Start()
     {
         remainingTime = timeDelay;
-        CreatingAsteroids();
     }
 
     private void Update()
@@ -50,14 +60,23 @@ public class AsteroidsControllerScript : MonoBehaviour
 
     private void CreatingAsteroids()
     {
-        int distance = 0;
-        for (int i = 0; i <= 10; i++)
+        int gridSize = (int)Mathf.Pow(numberOfRowsAndColumns, 2);
+        for (int i = 0; i <= gridSize; i++)
         {
-            distance += 4;
-            asteroidClone = Instantiate(asteroid, new Vector3(-20+distance, 12, 0), Quaternion.identity);
+            asteroidClone = Instantiate(asteroid, new Vector3(-startPoint / 2 + (distance * (i % numberOfRowsAndColumns)), -startPoint / 2 + (distance * (i / numberOfRowsAndColumns)), 0), Quaternion.identity);
             asteroidClone.SetActive(true);
             asteroidsQueue.Add(asteroidClone);
         }
         
+    }
+
+    private void CreatingRowOfAsteroids()
+    {
+        int increasingDistance = 0;
+        for (int i = 0; i < numberOfRowsAndColumns; i++)
+        {
+            asteroidClone = Instantiate(asteroid, new Vector3(-startPoint/2 + increasingDistance, -startPoint/2, 0.0f), Quaternion.identity);
+            increasingDistance = increasingDistance + distance;
+        }
     }
 }
