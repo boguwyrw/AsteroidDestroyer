@@ -221,7 +221,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f48ba0cd12beb14a948a69fd5211cee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  asteroid: {fileID: 6239982034103125598, guid: 66e13832737f27d4aae593a10d1642a5,
+  asteroid: {fileID: 4615333041930038922, guid: d33cb440057fa3d43accce1bd4c722ba,
     type: 3}
 --- !u!1 &514581309
 GameObject:

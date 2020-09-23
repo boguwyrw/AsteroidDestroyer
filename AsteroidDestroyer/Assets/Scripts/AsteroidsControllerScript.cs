@@ -8,25 +8,30 @@ public class AsteroidsControllerScript : MonoBehaviour
     private GameObject asteroid;
 
     private GameObject asteroidClone;
-    private float timeDelay = 1.0f;
-    private float remainingTime;
+    //private float timeDelay = 1.0f;
+    //private float remainingTime;
 
-    private List<GameObject> asteroidsQueue = new List<GameObject>();
+    //private List<GameObject> asteroidsQueue = new List<GameObject>();
 
     private int distance = 10;
-    private int numberOfRowsAndColumns = 16;
-    private int startPoint;
+    private int numberOfRowsAndColumns = 4;
+    private float startPoint;
+
+    private List<GameObject> rowOfAsteroidsList = new List<GameObject>();
+    private List<List<GameObject>> rowsList = new List<List<GameObject>>();
+
+    private int increasingVerticalDistance = 0;
 
     private void Awake()
     {
-        startPoint = distance * numberOfRowsAndColumns - distance;
-        //CreatingAsteroids();
-        CreatingRowOfAsteroids();
+        
     }
 
     private void Start()
     {
-        remainingTime = timeDelay;
+        startPoint = distance * numberOfRowsAndColumns - distance;
+        //CreatingAsteroids();
+        CreatingListOfRows();
     }
 
     private void Update()
@@ -57,7 +62,7 @@ public class AsteroidsControllerScript : MonoBehaviour
         }
         */
     }
-
+    /*
     private void CreatingAsteroids()
     {
         int gridSize = (int)Mathf.Pow(numberOfRowsAndColumns, 2);
@@ -69,14 +74,27 @@ public class AsteroidsControllerScript : MonoBehaviour
         }
         
     }
-
+    */
     private void CreatingRowOfAsteroids()
     {
-        int increasingDistance = 0;
+        int increasingHorizontalDistance = 0;
         for (int i = 0; i < numberOfRowsAndColumns; i++)
         {
-            asteroidClone = Instantiate(asteroid, new Vector3(-startPoint/2 + increasingDistance, -startPoint/2, 0.0f), Quaternion.identity);
-            increasingDistance = increasingDistance + distance;
+            asteroidClone = Instantiate(asteroid, new Vector3(-startPoint/2 + increasingHorizontalDistance, -startPoint/2 + increasingVerticalDistance, 0.0f), Quaternion.identity);
+            increasingHorizontalDistance = increasingHorizontalDistance + distance;
+            rowOfAsteroidsList.Add(asteroidClone);
         }
+    }
+
+    private void CreatingListOfRows()
+    {
+        increasingVerticalDistance = 0;
+        for (int i = 0; i < numberOfRowsAndColumns; i++)
+        {
+            CreatingRowOfAsteroids();
+            rowsList.Add(rowOfAsteroidsList);
+            rowOfAsteroidsList.Clear();
+            increasingVerticalDistance = increasingVerticalDistance + distance;
+        }  
     }
 }
