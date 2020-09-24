@@ -9,7 +9,7 @@ public class AsteroidScript : MonoBehaviour
 
     private void Start()
     {
-        asteroidSpeed = Random.Range(0.5f, 1.5f);
+        asteroidSpeed = Random.Range(0.5f, 7.5f);
         asteroidAngle = Random.Range(0.0f, 360f);
         transform.Rotate(new Vector3(0.0f, 0.0f, asteroidAngle));
     }

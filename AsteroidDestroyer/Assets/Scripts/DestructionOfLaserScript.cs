@@ -15,4 +15,9 @@ public class DestructionOfLaserScript : MonoBehaviour
             playerScore++;
         }
     }
+
+    public int GetPlayerScore()
+    {
+        return playerScore;
+    }
 }

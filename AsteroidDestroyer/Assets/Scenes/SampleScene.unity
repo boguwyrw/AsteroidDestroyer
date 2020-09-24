@@ -223,6 +223,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   asteroid: {fileID: 4615333041930038922, guid: d33cb440057fa3d43accce1bd4c722ba,
     type: 3}
+  distance: 10
+  numberOfRowsAndColumns: 16
 --- !u!1 &514581309
 GameObject:
   m_ObjectHideFlags: 0
