@@ -10,8 +10,6 @@ public class LaserScript : MonoBehaviour
     private void Start()
     {
         rigidbody2D = GetComponent<Rigidbody2D>();
-        rigidbody2D.gravityScale = 0.0f;
-        rigidbody2D = GetComponent<Rigidbody2D>();
         Invoke("DestroyLaser", 3.0f);
     }
 

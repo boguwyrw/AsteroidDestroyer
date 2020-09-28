@@ -11,7 +11,6 @@ public class SpaceshipScript : MonoBehaviour
     private void Start()
     {
         rigidbody2D = GetComponent<Rigidbody2D>();
-        rigidbody2D.gravityScale = 0.0f;
     }
 
     private void Update()
